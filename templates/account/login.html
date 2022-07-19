@@ -1,0 +1,22 @@
+{% extends 'main/base.html' %}
+{% load static %}
+{% block content %}
+<div class="d-flex mt-5 justify-content-center">
+<form action=""  method="POST" novalidate>{% csrf_token %}
+    {% for fm in form %}
+    {{fm.label_tag}}  {{fm}} {{fm.errors|striptags}}<br><br>
+    {% endfor %}
+
+
+    {% if form.non_field_errors %}
+    {% for error in form.non_field_errors %}
+    <p>{{error}}</p>
+    {% endfor %}
+    {% endif %}
+
+    <input type="submit" value="Login">
+</form>
+<a href="{%url 'forgetPassword'%}" class='d-inline'>Forget Password</a>
+</div>
+<pre class="d-flex mt-2 justify-content-center"> don't have account? <a href="{%url 'create'%}"> Create </a> One.</pre> 
+{% endblock content %}
